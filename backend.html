@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sentiment Analysis Dashboard</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f0f0;
+      color: #2d3436;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Top-right Dashboard Name */
+    .dashboard-name {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #d63031;
+    }
+
+    /* Company Name in the middle */
+    .company-name {
+      font-size: 2em;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      color: #0984e3;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Vertical menu options */
+    .options-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 300px;
+    }
+
+    .menu-option {
+      background: #ffffff;
+      border-radius: 15px;
+      width: 100%;
+      margin: 10px 0;
+      padding: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #2d3436;
+      transition: background 0.3s ease, transform 0.3s ease;
+      position: relative;
+    }
+
+    .menu-option:hover {
+      background: #74b9ff;
+      transform: scale(1.05);
+      color: #ffffff;
+    }
+
+    /* Dropdown style */
+    .dropdown {
+      display: none;
+      background: #dfe6e9;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      margin-top: 5px;
+      position: absolute;
+      width: 90%;
+      left: 5%;
+      top: 60px;
+      z-index: 10;
+    }
+
+    .dropdown-option {
+      padding: 8px;
+      background: #ffffff;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dropdown-option:hover {
+      background: #81ecec;
+    }
+
+    /* Show dropdown */
+    .show {
+      display: block;
+    }
+
+    /* Button for Analyze */
+    .analyze-button {
+      display: inline-block;
+      background: #00cec9;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 10px;
+      text-decoration: none;
+    }
+
+    .analyze-button:hover {
+      background: #2d3436;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Dashboard Name -->
+  <div class="dashboard-name">Sentiment Analysis Dashboard</div>
+
+  <!-- Company Name -->
+  <div class="company-name">Your Company Name</div>
+
+  <!-- Vertical Options Menu -->
+  <div class="options-menu">
+    <div class="menu-option" onclick="toggleDropdown('chips-dropdown')">Chips</div>
+    <div class="dropdown" id="chips-dropdown">
+      <div class="dropdown-option">Potato Chips <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Tortilla Chips <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Corn Chips <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Veggie Chips <a class="analyze-button" href="#">Analyze</a></div>
+    </div>
+
+    <div class="menu-option" onclick="toggleDropdown('biscuits-dropdown')">Biscuits</div>
+    <div class="dropdown" id="biscuits-dropdown">
+      <div class="dropdown-option">Digestive <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Cream Biscuits <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Butter Biscuits <a class="analyze-button" href="#">Analyze</a></div>
+    </div>
+
+    <div class="menu-option" onclick="toggleDropdown('drinks-dropdown')">Drinks</div>
+    <div class="dropdown" id="drinks-dropdown">
+      <div class="dropdown-option">Cola <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Juice <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Sports Drink <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Energy Drink <a class="analyze-button" href="#">Analyze</a></div>
+    </div>
+
+    <div class="menu-option" onclick="toggleDropdown('chocolates-dropdown')">Chocolates</div>
+    <div class="dropdown" id="chocolates-dropdown">
+      <div class="dropdown-option">Dark Chocolate <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Milk Chocolate <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">White Chocolate <a class="analyze-button" href="#">Analyze</a></div>
+      <div class="dropdown-option">Hazelnut Chocolate <a class="analyze-button" href="#">Analyze</a></div>
+    </div>
+  </div>
+
+  <script>
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.classList.toggle("show");
+    }
+
+    // Close the dropdown if clicked outside
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-option')) {
+        const dropdowns = document.getElementsByClassName("dropdown");
+        for (let i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
